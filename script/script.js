@@ -1,5 +1,4 @@
 
-    /* Replace This Code - get Value from playlist page and place it here */
     var playlistId = "PLgFfTrtdYUnE1gXI-QYadRKNoIlrffDxH";
     var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
@@ -66,4 +65,7 @@ function onPlayerStateChange(event) {
             player.playVideoAt(newRandomNumber());
         }
     }
-}    
+}
+
+
+

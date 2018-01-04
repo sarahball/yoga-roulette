@@ -1,0 +1,18 @@
+/* Grid */
+
+@mixin define($section) {
+	grid-area: #{$section};
+}
+
+@each $section in 'minibar' 'content' {
+  .#{$section} {
+    @include define(#{$section});
+  }
+}
+  
+.wrapper {
+  display: grid;
+  grid-template-columns: $minibar-size auto;
+  grid-template-areas: 
+    "minibar content";
+}
