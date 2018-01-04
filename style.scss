@@ -1,0 +1,130 @@
+
+$minibar-size: 100px !default;
+$light: #C3FFEC !default;
+$dark: #8B8E8C !default;
+$color: #4F009E !default;
+
+/* Styling */
+
+* {
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 'Open Sans', Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.75em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {background-color: $light;}
+
+h1 {
+	font-family: 'Barlow Semi Condensed';
+	font-weight: 700;
+	font-size: 1.9em;
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+	color: $dark;
+
+	&.title {
+		line-height: 1.1;
+		margin: 0;
+	}
+}
+
+.wrapper {
+	margin: 0 auto;
+}
+
+.minibar {
+  height: 100vh;
+
+		.inner {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 100vh;
+		height: $minibar-size;
+		transform-origin: left top;
+		position: absolute;
+		bottom: -#{$minibar-size};
+		text-align: center;
+		-webkit-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+		-ms-transform: rotate(-90deg);
+		-o-transform: rotate(-90deg);
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	}
+}
+
+.button {
+	display: inline-block;
+	font-family: 'Barlow Semi Condensed';
+	font-weight: 700;
+	font-size: .8em;
+	letter-spacing: 0.1rem;
+	white-space: nowrap;
+	cursor: pointer;
+	border: 2px solid $color;
+	border-radius: .25em;
+	line-height: 0;
+	padding: 1.2em 1.25em;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	color: $color;
+	background: {
+		image: linear-gradient(45deg, $color 10%, rgba($color, 0.5) 50%, transparent 50%);
+		position: 100%;
+		size: 400%;
+	}
+	transition: background 300ms ease-in-out, color 300ms ease-in-out;
+	&:focus {
+	  outline: 0;
+	}
+	&:hover {
+		color: $light;
+		outline: 0;
+		background-position: 0;
+	}
+}
+
+.rotate {
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+}
+
+/* Grid */
+
+@mixin define($section) {
+	grid-area: #{$section};
+}
+
+@each $section in 'minibar' 'content' {
+  .#{$section} {
+    @include define(#{$section});
+  }
+}
+  
+.wrapper {
+  display: grid;
+  grid-template-columns: $minibar-size auto;
+  grid-template-areas: 
+    "minibar content";
+}
+
+/* Player */
+
+.content {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+}
+
+#player {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
