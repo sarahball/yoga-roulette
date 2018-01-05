@@ -1,47 +1,46 @@
+var playlistId = "PLgFfTrtdYUnE1gXI-QYadRKNoIlrffDxH";
+var tag = document.createElement('script');
+    tag.src = "//www.youtube.com/iframe_api";
 
-    var playlistId = "PLgFfTrtdYUnE1gXI-QYadRKNoIlrffDxH";
-    var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var player;
 
-    var player;
-
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player', {
-            height: '411',
-            width: '548',
-            playerVars: {
-                modestbranding: 0,
-                showinfo: 0,
-                rel: 0
-            },
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-
-        });
-    }
-
-
-    var playlistArray;
-    var playListArrayLength;
-    var maxNumber;
-
-    var oldNumber = 0;
-    var NewNumber = 0;
-
-    function newRandomNumber() {
-        oldNumber = NewNumber;
-        NewNumber = Math.floor(Math.random() * maxNumber);
-        if (NewNumber == oldNumber) {
-            newRandomNumber();
-        } else {
-            return NewNumber;
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '411',
+        width: '548',
+        playerVars: {
+            modestbranding: 0,
+            showinfo: 0,
+            rel: 0
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
         }
+
+    });
+}
+
+
+var playlistArray;
+var playListArrayLength;
+var maxNumber;
+
+var oldNumber = 0;
+var NewNumber = 0;
+
+function newRandomNumber() {
+    oldNumber = NewNumber;
+    NewNumber = Math.floor(Math.random() * maxNumber);
+    if (NewNumber == oldNumber) {
+        newRandomNumber();
+    } else {
+        return NewNumber;
     }
+}
 
 function onPlayerReady(event) {
     player.loadPlaylist({
@@ -66,6 +65,3 @@ function onPlayerStateChange(event) {
         }
     }
 }
-
-
-
